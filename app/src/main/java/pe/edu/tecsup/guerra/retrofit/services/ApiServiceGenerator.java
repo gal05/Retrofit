@@ -1,6 +1,7 @@
 package pe.edu.tecsup.guerra.retrofit.services;
 
 import okhttp3.OkHttpClient;
+import okhttp3.logging.HttpLoggingInterceptor;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
@@ -23,6 +24,11 @@ public final class ApiServiceGenerator {
 
     public static <S> S createService(Class<S> serviceClass) {
         if(retrofit == null) {
+
+            HttpLoggingInterceptor loggingInterceptor=new HttpLoggingInterceptor();
+            loggingInterceptor.setLevel(HttpLoggingInterceptor.Level.BODY);
+            httpClient.addInterceptor(loggingInterceptor);
+
             retrofit = builder.client(httpClient.build()).build();
         }
         return retrofit.create(serviceClass);
