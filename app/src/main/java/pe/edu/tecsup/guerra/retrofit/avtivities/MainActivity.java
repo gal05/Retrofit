@@ -126,7 +126,7 @@ public class MainActivity extends AppCompatActivity {
         });
     }
 
-    public void showRegister(View view){
+    public void showRegiste(View view){
         startActivityForResult(new Intent(this, RegisterActivity.class), REGISTER_FORM_REQUEST);
     }
 
